@@ -80,14 +80,7 @@ body{
    /* V background-color:aquamarine; */
 }
 
-.colors{
-    width:70%;
-    height:30rem;
-    margin:0 auto;
-    background-color:rgb(0, 228, 0);
-    margin-top:10rem;
-    display:flex;
-}
+
 
 .cOne{
     width:50%;
