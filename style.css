@@ -80,7 +80,14 @@ body{
    /* V background-color:aquamarine; */
 }
 
-
+.colors{
+    width:70%;
+    height:30rem;
+    margin:0 auto;
+    background-color:grey;
+    margin-top:5rem;
+    display:flex;
+}
 
 .cOne{
     width:50%;
@@ -91,4 +98,13 @@ body{
 input{
     border:2px solid black;
     padding:0.5rem;
+}
+h1{
+    padding:15px;
+    border:2px solid black ;
+    text-align: center;
+    margin:15px;
+}
+.gameOver{
+    display: none;
 }
