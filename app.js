@@ -1,22 +1,42 @@
 const cOne = document.getElementById("cOne");
 const cTwo =document.getElementById("cTwo")
 const colName = document.getElementById("colName");
+const scoreTag = document.getElementById("score");
+const startGame = document.querySelector(".startGame");
+const gameOver = document.querySelector(".gameOver");
+let turn = 0 ;
+let score = 0 ;
+let start = true;
 
-const rand=()=>{
-    return Math.floor(Math.random()*8);
+const main=()=>{ 
+    if(start){
+        startGame.style.display = "none";
+        start = false;
+        colorPicker();
+    }
 }
-const main=()=>{
-    let pick = Math.floor(Math.random()*10);
-    let firstColor = rand();
-    let secondColor = rand();
-    colorPicker(firstColor,secondColor,pick);
+const rand=(x)=>{
+    return Math.floor(Math.random()*x);
 }
-const colorPicker=(firstColor,secondColor,pick)=>{
-    display(firstColor,secondColor);
-    picks(pick,firstColor,secondColor);
-    eve(firstColor,secondColor,pick);
+const randPicker=()=>{
+    let pick = rand(10);
+    let firstColor = rand(8);
+    let secondColor = rand(8);
+    if(firstColor==secondColor){
+        firstColor =rand(8)
+    }
+    return {firstColor,secondColor,pick};
+}
 
+const colorPicker=()=>{
+        let {firstColor,secondColor,pick} = randPicker();
+        display(firstColor,secondColor);
+        picks(pick,firstColor,secondColor);
+        eve(firstColor,secondColor,pick);
+        turn++;
+        return [pick,firstColor,secondColor]
 }
+
 const display=(firstColor,secondColor)=>{
     if(firstColor!=secondColor){
         cOne.style.backgroundColor = Colors[firstColor].getCol();
@@ -28,30 +48,5 @@ const display=(firstColor,secondColor)=>{
         cTwo.style.backgroundColor = Colors[secondColor].getCol();
     }
     return [firstColor,secondColor]
-}
-
-const picks=(pick,firstColor,secondColor)=>{
-    if(pick>5){
-        colName.innerHTML = Colors[firstColor].getCol();
-    }else{
-        colName.innerHTML = Colors[secondColor].getCol();
-    }
-}
-
-const checkAns = (playerAnswer,rightAnswer)=>{
-    if(playerAnswer==rightAnswer){
-        console.log("Wrong")
-    }else{
-        console.log("RIGHT");
-    }
-}
-const eve = (firstColor , secondColor,pick)=>{
-    let picks = pick > 5 ? firstColor : secondColor;
-    cOne.addEventListener("mousedown", ()=>{
-        checkAns(Colors[firstColor].getCol(),Colors[picks].getCol())
-    });
-    cTwo.addEventListener("mousedown", ()=>{
-        checkAns(Colors[secondColor].getCol(),Colors[picks].getCol())
-    });
 }
 
