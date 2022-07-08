@@ -50,3 +50,33 @@ const display=(firstColor,secondColor)=>{
     return [firstColor,secondColor]
 }
 
+const picks=(pick,firstColor,secondColor)=>{
+    if(pick>5){
+        colName.innerHTML = Colors[firstColor].getCol();
+    }else{
+        colName.innerHTML = Colors[secondColor].getCol();
+    }
+}
+
+const checkAns = (playerAnswer,rightAnswer)=>{
+    if(playerAnswer==rightAnswer){
+        start = true;
+        gameOver.style.display="block";
+
+    }else{
+        score++;
+        console.log(score);
+        scoreTag.innerHTML = score;
+        colorPicker()     
+    }
+}
+const eve = (firstColor , secondColor,pick)=>{
+    let picks = pick > 5 ? firstColor : secondColor;
+    cOne.onclick=()=>{
+        console.log("eve1")
+        checkAns(Colors[firstColor].getCol(),Colors[picks].getCol());
+    }
+    cTwo.onclick=()=>{
+        checkAns(Colors[secondColor].getCol(),Colors[picks].getCol());
+    }
+}
